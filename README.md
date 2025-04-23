@@ -284,11 +284,3 @@ These values fully satisfy design constraints.
 ![Image](https://github.com/user-attachments/assets/74ffd5ae-d191-46c9-bfcf-be1163841ce8)
 #### PCB view with selected 3d models from 3d viewer
 ![Image](https://github.com/user-attachments/assets/cc4973f4-6345-475a-bf68-523a2493bea3)
-
-
-## 📂 Repository Structure
-├── README.md             # This document
-├── pcb/                  # PCB layouts & Gerbers
-├── simulation/           # SPICE netlists & plots
-└── docs/                 # Detailed derivations & reports
-
