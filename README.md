@@ -55,7 +55,7 @@ $R = \omega_p \cdot \left(\frac{1}{\varepsilon}\right)^{1/7} = 261.129 \cdot 10^
 
 ---
 
-### 🧮 Pole Frequencies and Quality Factors
+### 🎚️ Pole Frequencies and Quality Factors
 
 Given $p_k = R \cdot (\sigma_k + i\omega_k)$, we derive:
 
@@ -75,9 +75,9 @@ Given $p_k = R \cdot (\sigma_k + i\omega_k)$, we derive:
 
 ---
 
-## Filter Design
+## 🔧 Filter Design
 
-### Design Choices
+### 🧠 Design Choices
 
 The project design involved balancing trade-offs among performance, component count, and sensitivity. The implemented solution includes three smart Sallen-Key stages, a single integrator stage, and an inverting buffer.
 
@@ -85,7 +85,7 @@ An alternative solution aimed at minimizing component usage would have included 
 
 Given the relatively non-stringent specifications, a general-purpose operational amplifier was selected, specifically the *TL072* (and *TL071*).
 
-### Component Value Calculation
+### 🧩 Component Value Calculation
 
 Following the model of the smart Sallen-Key filter (schematic shown in the following figure), the resistor and capacitor values for each stage are determined according to the following equations:
 
@@ -148,7 +148,7 @@ The sensitivity values across all stages of the circuit are shown in the tables 
 
 --- 
 
-## Spice Simulations
+## ⚙️ Spice Simulations
 ####Schematic used for Spice simulations
 ![Image](https://github.com/user-attachments/assets/acd42b64-5252-413d-986f-0e1b06ac0b8a)
 
@@ -175,7 +175,7 @@ At this point, it is essential to observe that at $61kHz$, the attenuation is mu
 ![Image](https://github.com/user-attachments/assets/23ab6132-78c1-4a24-be94-418501bd7aad)
 
 
-### Time Domain Analysis
+### 🕒 Time Domain Analysis
 
 The time domain simulations of the filter at the relevant frequencies are shown in the following graphs. The peak values presented are entirely consistent with those calculated previously.
 
@@ -236,7 +236,7 @@ The following table presents the current measurements for each operational ampli
 
 
 
-## PCB Circuit Schematic
+## ⚡ PCB Circuit Schematic
 
 To ensure project completeness and replicability, the circuit schematic was transposed into KiCad, an open-source suite for electrical schematic and PCB design.
 
@@ -272,7 +272,7 @@ Before routing, trace widths were dimensioned using KiCad's **Track Width Calcul
 
 These values fully satisfy design constraints.
 
-### Additional Design Steps
+### ✅ Additional Design Steps
 
 - **ERC (Electrical Rules Check)** and **DRC (Design Rules Check)** were performed in KiCad.
 - Manufacturer constraints (e.g., JLC PCB) were input for validation.
