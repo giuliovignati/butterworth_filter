@@ -83,7 +83,7 @@ The project design involved balancing trade-offs among performance, component co
 
 An alternative solution aimed at minimizing component usage would have included three Sallen-Key filters, one RC filter, and a non-inverting amplifier stage. This approach would have saved one operational amplifier. However, it was ultimately discarded in favor of a fully active solution, which offers greater versatility and improved performance.
 
-Given the relatively non-stringent specifications, a general-purpose operational amplifier was selected—specifically the *TL072* (and *TL071*).
+Given the relatively non-stringent specifications, a general-purpose operational amplifier was selected, specifically the *TL072* (and *TL071*).
 
 ### Component Value Calculation
 
@@ -92,8 +92,6 @@ Following the model of the smart Sallen-Key filter (schematic shown in the follo
 $\omega_0 = \frac{1}{R \sqrt{C_1 C_2}} \quad$ ; $\quad Q = \frac{1}{2} \sqrt{\frac{C_1}{C_2}}$
 
 ![Image](https://github.com/user-attachments/assets/efca4a23-9c13-4085-a93a-94759744b827)
-
-## Filter Design
 
 Considering the values of $Q$ and $\omega_0$ obtained, and choosing discrete resistor and capacitor values that best approximate the theoretical values, the following values were obtained:
 
@@ -105,13 +103,13 @@ Considering the values of $Q$ and $\omega_0$ obtained, and choosing discrete res
 | $Q$ | $0.5491$ | $0.7882$ | $2.3452$ |
 | $\omega_0 [krad/s]$ | $262.6$ | $256.3$ | $284.3$ |
 
-For the integrator stage, based on the schematic, the following formulas are used:
+For the integrator stage (based on the schematic) the following formulas are used:
 
 $$
 \omega_0 = \frac{1}{R_2 C}, \quad K = \frac{R_2}{R_1}
 $$
 
-The chosen values are: $R_1 = 8.1k\Omega$, $R_2' = 39k\Omega$, $R_2'' = 2k\Omega$, and $C' = C'' = 47pF$. 
+The chosen values are: $R_1 = 8.1k\Omega$,  $R_2' = 39k\Omega$,  $R_2'' = 2k\Omega$, and  $C' = C'' = 47pF$. 
 
 For the inverting buffer, the resistor values are $R = 10k\Omega$. Given the simple DC gain specification, all amplification is handled in the single-pole stage. Therefore, it was the only stage where care was taken to use resistor series to closely approximate the ideal gain value, while the capacitor parallel configuration was used primarily for sizing purposes.
 
@@ -148,12 +146,15 @@ The sensitivity values across all stages of the circuit are shown in the tables 
 | $S^K_{R_1}$ | -1 |
 | $S^K_{R_2}$ | 1 |
 
+--- 
+
 ## Spice Simulations
+####Schematic used for Spice simulations
 ![Image](https://github.com/user-attachments/assets/acd42b64-5252-413d-986f-0e1b06ac0b8a)
 
 ### Fourier Domain Analysis
 
-The simulation with nominal values is shown in the previous figure, and the Monte Carlo simulation, assuming $5\%$ tolerance for resistors and $15\%$ tolerance for capacitors, is shown in Figure `MontecarloSimulation`. The values presented in the table below refer to the simulation with exact nominal values. The last row in the table shows the actual frequency at which $A_{min} = 2dB$ is satisfied, which occurs with a $0.5kHz$ offset.
+The previous schematic was used to perform the following Montecarlo simulation with $5\%$ tolerance for resistors and $15\%$ tolerance for capacitors, while the values presented in the table below refer to the simulation with exact nominal values. The last row in the table shows the actual frequency at which $A_{min} = 2dB$ is satisfied, which occurs with a $0.5kHz$ offset.
 
 At this point, it is essential to observe that at $61kHz$, the attenuation is much smaller compared to the designed value ($\approx -6dB$). This discrepancy is due to the effect of additional poles in the circuit, probably caused by the non-idealities of the operational amplifiers. This effect can be directly observed in the simulation with nominal values by evaluating the phase Bode plot. In addition to the contribution from the 7 poles coinciding around $40kHz$, which would lead to a total phase shift of $630^\circ$, an additional phase shift is visible beyond $0.5MHz$, suggesting the presence of extra poles. It is worth noting that this behavior could have allowed us to achieve a solution that fully met the design specifications, for example, by simply shifting the cutoff frequency $\omega_0$ of the stages further ahead. However, we chose not to implement this solution in order to remain consistent with the theoretical models, while still obtaining valid results with this configuration.
 
@@ -166,28 +167,28 @@ At this point, it is essential to observe that at $61kHz$, the attenuation is mu
 | $61kHz$ | $-8.67$ | $0.37$ |
 | $39.5kHz$ | $11.98$ | $3.97$ |
 
-Montecarlo simulation:
+#### Montecarlo simulation:
 ![Image](https://github.com/user-attachments/assets/7bf311f9-d3ee-4263-9795-9c027a02cdd1)
-In detail:
+#### Montecarlo simulation with cutoff zoom:
 ![Image](https://github.com/user-attachments/assets/81c9d8ec-2548-443e-8844-f36b40bc4c78)
-At nominal frequency:
+#### Nominal frequency analysis:
 ![Image](https://github.com/user-attachments/assets/23ab6132-78c1-4a24-be94-418501bd7aad)
 
 
 ### Time Domain Analysis
 
-The time domain simulations of the filter at the relevant frequencies are shown in Figures 7, 8, and 9. The peak values presented are entirely consistent with those calculated from the simulation in Table (5).
+The time domain simulations of the filter at the relevant frequencies are shown in the following graphs. The peak values presented are entirely consistent with those calculated previously.
 
+#### 1Hz Simulation
 ![Image](https://github.com/user-attachments/assets/5b88f015-0ac9-4f17-b8f1-557143c21d9a)
-
+#### 40Hz Simulation
 ![Image](https://github.com/user-attachments/assets/80e27a38-a653-4dc3-be60-1041e75d58cd)
-
+#### 61Hz Simulation
 ![Image](https://github.com/user-attachments/assets/7fcb7b34-3256-4b62-9a33-a5cb8034fbd1)
 
 ### Notes on Non-Ideal Component Sizing
-\label{chapter:complementi_dimensionamento}
 
-As previously mentioned, initial alternative sizing options were proposed using real measured values, which leveraged component imprecision to achieve more accurate $Q$ and $\omega_0$ values for each stage (as shown in schematic `schematic_alternative_realvalues`). This approach led to simulations that fully satisfied the design specifications (see Table `BodeAmplitude_real`).
+As previously mentioned, initial alternative sizing options were proposed using real measured values, which leveraged component imprecision to achieve more accurate $Q$ and $\omega_0$ values for each stage (as shown in the following schematic). This approach led to simulations that fully satisfied the design specifications (see following table).
 
 However, this sizing strategy was ultimately discarded because the component values deviated significantly from their nominal counterparts. This made the solution impractical for large-scale implementation, as it relied on the non-ideal behavior of resistors and capacitors. Additionally, while simulations using nominal values were still somewhat acceptable, the use of very small capacitors had significant effects in the real circuit implementation, resulting in performance that deviated substantially from the design specifications.
 
@@ -199,15 +200,23 @@ However, this sizing strategy was ultimately discarded because the component val
 | $40kHz$ | $12.36$ | $4.15$ |
 | $61kHz$ | $-10.12$ | $0.31$ |
 
+#### Filter Schematic with alternative real values 
 ![Image](https://github.com/user-attachments/assets/305542c4-da05-43ee-9fc6-b7c61dc043a0)
 
 ## Physical Implementation of the Circuit and Experimental Measurements
 
-The oscilloscope screenshots (Figures `1hzreal`, `38.8khzreal`, `40khzreal`, `61khzreal`) display the input (Channel 1) and the output (Channel 2) of the filter. Compared to the ideal simulations previously shown in Table `BodeAmplitude`, non-idealities in the circuit and deviations from nominal component values led to a shift of approximately $0.7kHz$ in the actual cutoff frequency (see Table `circuitVoltages`).
+The following oscilloscope screenshots display the input (Channel 1) and the output (Channel 2) of the filter. Compared to the ideal simulations previously shown in Table, non-idealities in the circuit and deviations from nominal component values led to a shift of approximately $0.7kHz$ in the actual cutoff frequency.
 
-Table `powerdissipated` presents the current measurements for each operational amplifier and estimates of power consumption. It was observed that the current draw remains constant throughout the input frequency range.
+#### 100Hz Measurement
+![Image](https://github.com/user-attachments/assets/ebcaa1a5-8c0a-46c8-af04-d3f2bb361e34)
+#### 40kHz Measurement
+![Image](https://github.com/user-attachments/assets/1a6c519a-cb4a-455d-a89c-563c863a6f78)
+#### 61kHz Measurement
+![Image](https://github.com/user-attachments/assets/63adef68-e5b3-4194-b639-ce28eee3d7c3)
 
-### Measured Voltages at Key Frequencies
+The following table presents the current measurements for each operational amplifier and estimates of power consumption. It was observed that the current draw remains constant throughout the input frequency range.
+
+#### Measured Voltages at Key Frequencies
 
 |       | $V_{in}$ [V] | $V_{out}$ [V] |
 |-------|--------------|---------------|
@@ -216,7 +225,7 @@ Table `powerdissipated` presents the current measurements for each operational a
 | $61kHz$    | $1.03$ | $0.314$ |
 | $38.8kHz$  | $1.03$ | $3.96$ |
 
-### Current and Power Dissipation (Power Supply: $\pm12V$)
+#### Current and Power Dissipation (Power Supply: $\pm12V$)
 
 | Component       | Current [$mA$] | Power Dissipated [$mW$] |
 |-----------------|----------------|--------------------------|
@@ -225,10 +234,6 @@ Table `powerdissipated` presents the current measurements for each operational a
 | $TL071$         | $1.319$         | $31.66$                  |
 
 
-
-![Image](https://github.com/user-attachments/assets/ebcaa1a5-8c0a-46c8-af04-d3f2bb361e34)
-![Image](https://github.com/user-attachments/assets/1a6c519a-cb4a-455d-a89c-563c863a6f78)
-![Image](https://github.com/user-attachments/assets/63adef68-e5b3-4194-b639-ce28eee3d7c3)
 
 
 ## PCB Circuit Schematic
@@ -244,7 +249,7 @@ A significant design decision was the selection of **footprints** for each compo
 - **Resistors**: 1/4W, metal film
 - **Capacitors**: Ceramic, 50V tolerance
 
-### Selected Footprint Dimensions
+#### Selected Footprint Dimensions
 
 | Component   | Length [mm] | Diameter [mm] | Pitch [mm] |
 |-------------|--------------|----------------|-------------|
