@@ -13,9 +13,9 @@ This project focuses on the design and analysis of a 7th-order Butterworth low-p
 
 The specifications provided for this project are summarized in the following table:
 
-| Filter Type | \($f_p$\) | \($f_s$\) | \($A_{\text{max}}$\)  | \($A_{\text{min}}$\) | \($K$\) |
-|-------------|-----------|-----------|-----------------------|-----------------------|---------|
-| Butterworth | 40 kHz    | 61 kHz    | 2 dB                  | 20 dB                 | 5       |
+| Filter Type |   $f_p$   |   $f_s$   |   $A_{\text{max}}$    |   $A_{\text{min}}$    |  $K$  |
+|-------------|-----------|-----------|-----------------------|-----------------------|-------|
+| Butterworth | 40 kHz    | 61 kHz    | 2 dB                  | 20 dB                 | 5     |
 
 ---
 
