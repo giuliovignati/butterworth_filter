@@ -1,4 +1,5 @@
  🧈 **Butterworth Low-Pass Filter Design**
+ ![Image](https://github.com/user-attachments/assets/74ffd5ae-d191-46c9-bfcf-be1163841ce8)
 ---
 
 ## 📘 Introduction
@@ -284,8 +285,8 @@ These values fully satisfy design constraints.
 #### KiCad PCB editor view
 ![Image](https://github.com/user-attachments/assets/95b3d5d3-e24b-4f0b-9008-c043c5453d89)
 #### PCB view (front side) from 3d viewer
-![Image](https://github.com/user-attachments/assets/0cc80b84-78e2-4372-899b-723c4edd710f)
-#### PCB view (back side) from 3d viewer
 ![Image](https://github.com/user-attachments/assets/74ffd5ae-d191-46c9-bfcf-be1163841ce8)
+#### PCB view (back side) from 3d viewer
+![Image](https://github.com/user-attachments/assets/0cc80b84-78e2-4372-899b-723c4edd710f)
 #### PCB view with selected 3d models from 3d viewer
 ![Image](https://github.com/user-attachments/assets/cc4973f4-6345-475a-bf68-523a2493bea3)
