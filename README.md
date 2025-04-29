@@ -116,7 +116,7 @@ For the inverting buffer, the resistor values are $R = 10k\Omega$. Given the sim
 
 Finally, the order of the stages, from input to output, is: integrator, Sallen-Key smart filter with increasing $Q$, and inverting buffer.
 
-An additional note on filter sizing: Initially, different sizing was planned, especially for the first and third Sallen-Key stages. However, upon testing the real filter's performance and considering the numerous non-idealities of the circuit on a breadboard (e.g., parasitic capacitance), the actual values differed significantly from the expected ones (cutting off at around $4kHz$ instead of the target). As a result, an alternative sizing was chosen to better meet the design specifications, aiming to use larger capacitors to reduce parasitic effects. Further details on the alternative sizing approach are provided in section \ref{chapter:complementi_dimensionamento}.
+An additional note on filter sizing: Initially, different sizing was planned, especially for the first and third Sallen-Key stages. However, upon testing the real filter's performance and considering the numerous non-idealities of the circuit on a breadboard (e.g., parasitic capacitance), the actual values differed significantly from the expected ones (cutting off at around $4kHz$ instead of the target). As a result, an alternative sizing was chosen to better meet the design specifications, aiming to use larger capacitors to reduce parasitic effects.
 
 ## Circuit Sensitivity
 
@@ -150,7 +150,7 @@ The sensitivity values across all stages of the circuit are shown in the tables 
 --- 
 
 ## ⚙️ Spice Simulations
-####Schematic used for Spice simulations
+#### Schematic used for Spice simulations
 ![Image](https://github.com/user-attachments/assets/acd42b64-5252-413d-986f-0e1b06ac0b8a)
 
 ### Fourier Domain Analysis
